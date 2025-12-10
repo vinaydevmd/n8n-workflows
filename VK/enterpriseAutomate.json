@@ -1,0 +1,2233 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1SE-bkVPgYSWeWTlg_zLw2bkFJQaJfO5rYp0QOaGu6WA",
+          "mode": "list",
+          "cachedResultName": "Vidyagram-AI-Demo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1SE-bkVPgYSWeWTlg_zLw2bkFJQaJfO5rYp0QOaGu6WA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 8348985,
+          "mode": "list",
+          "cachedResultName": "Form responses 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1SE-bkVPgYSWeWTlg_zLw2bkFJQaJfO5rYp0QOaGu6WA/edit#gid=8348985"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -512,
+        -240
+      ],
+      "id": "229197db-2390-450a-8cf5-eb45664fdd30",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "th53k381uBvBHJS2",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1p9igH4El-PieEddJDvVpfiuO3rdkSvdNXVM2UXAsxko",
+          "mode": "list",
+          "cachedResultName": "Invoice December2025",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1p9igH4El-PieEddJDvVpfiuO3rdkSvdNXVM2UXAsxko/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 516212673,
+          "mode": "list",
+          "cachedResultName": "Mapping",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1p9igH4El-PieEddJDvVpfiuO3rdkSvdNXVM2UXAsxko/edit#gid=516212673"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -368,
+        96
+      ],
+      "id": "abf525bd-aee7-48b0-9cf8-e83083c4d619",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZBiSfjl5rc1r3rrl",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -544,
+        96
+      ],
+      "id": "317ea37d-e048-4283-b452-150a72897910",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "db62e114-2c2d-4fd7-a66a-0190ca6768a2",
+              "leftValue": "={{ $json['Rice (Rajmudi)'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        -336,
+        -240
+      ],
+      "id": "4ccba293-e349-4c3c-9b31-2d0e2a21def2",
+      "name": "Filter"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c652e80a-d854-4664-a59f-6b81a327a350",
+              "name": "Items",
+              "value": "={{ $json['Red Rice / ಕೆಂಪಕ್ಕಿ'] }}",
+              "type": "string"
+            },
+            {
+              "id": "606430e6-8a8e-495d-a6b8-e3503c4d538a",
+              "name": "Price",
+              "value": "={{ $json['110'] }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -160,
+        96
+      ],
+      "id": "cf92eef6-8896-408b-8f53-54a8cfc4176c",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "dRbaJ9xTpNuDlIO1",
+          "mode": "list",
+          "cachedResultName": "Grocery_Stock",
+          "cachedResultUrl": "/projects/1BB4IzRDTtcD7I0W/datatables/dRbaJ9xTpNuDlIO1"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Price": "={{ $json.Price }}",
+            "Items": "={{ $json.Items }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Items",
+              "displayName": "Items",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Price",
+              "displayName": "Price",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "optimizeBulk": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        48,
+        96
+      ],
+      "id": "86d49092-ba4a-4920-92ea-b019e4e94c0d",
+      "name": "Insert row"
+    },
+    {
+      "parameters": {
+        "content": "## Getting Grocery Stocks and prices from excel\n",
+        "height": 272,
+        "width": 1024,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -672,
+        16
+      ],
+      "typeVersion": 1,
+      "id": "4b99ebe2-b92d-4308-8f37-f195d3081066",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1N4hLi5MhtvjO2_AwXtFhk8cTqV-m0g5FTyVocqOGcLc",
+          "mode": "list",
+          "cachedResultName": "Google form Download",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N4hLi5MhtvjO2_AwXtFhk8cTqV-m0g5FTyVocqOGcLc/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1N4hLi5MhtvjO2_AwXtFhk8cTqV-m0g5FTyVocqOGcLc/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -368,
+        400
+      ],
+      "id": "f2f52703-890d-4ac0-9071-55aa84aeda0a",
+      "name": "Get row(s) in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ZBiSfjl5rc1r3rrl",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "156621a8-7e12-4814-80ff-0530db07b857",
+              "name": "Name",
+              "value": "={{ $json[\"Name:\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "42810670-872d-49ae-9781-04626db0a076",
+              "name": "WhatsappNo",
+              "value": "={{ $json[\"Whatsapp No:\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "de962281-fd75-40bd-a161-a12b515a9f2a",
+              "name": "Email",
+              "value": "={{ $json.Username }}",
+              "type": "string"
+            },
+            {
+              "id": "3d82a8cf-59dd-4c8b-857d-6c898e5d2eea",
+              "name": "Red Rice / ಕೆಂಪಕ್ಕಿ",
+              "value": "={{ $json[\"RICE [Rajamudi Rice/à²°à²¾à²œà²®à³à²¡à²¿ à²…à²•à³à²•à²¿ Rs. 110/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "7ffaa03d-01d9-4195-bdf9-0a59f6c0e85e",
+              "name": "Ponni Rice Raw /ಪೋನ್ನಿ ಅಕ್ಕಿ",
+              "value": "={{ $json[\"RICE [Ponni Rice Raw /à²ªà³‹à²¨à³à²¨à²¿ à²…à²•à³à²•à²¿ Rs. 100/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "5055ecb0-3741-433c-b824-ee4448f96daf",
+              "name": "Sona Masuri Rice - Polish/ಸೋನಾ ಮಸೂರಿ ಅಕ್ಕಿ ಪಾಲಿಷ್ಡ್",
+              "value": "={{ $json[\"RICE [Sona Masuri Rice - Polish/à²¸à³‹à²¨à²¾ à²®à²¸à³‚à²°à²¿ à²…à²•à³à²•à²¿ à²ªà²¾à²²à²¿à²·à³à²¡à³ Rs. 100/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "b4948516-c67b-488e-a58f-243c728fc199",
+              "name": "Idli Rice/ ಇಡ್ಲಿ ಅಕ್ಕಿ",
+              "value": "={{ $json[\"RICE [Idli Rice/ à²‡à²¡à³à²²à²¿ à²…à²•à³à²•à²¿ Rs. 89/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "8142eb7f-de75-45e5-ae40-6bb010a702e9",
+              "name": "White Basumathi Rice/ ಬಾಸ್ಮತಿ ಅಕ್ಕಿ ಪಾಲಿಶ್",
+              "value": "={{ $json[\"RICE [White Basumathi Rice/ à²¬à²¾à²¸à³à²®à²¤à²¿ à²…à²•à³à²•à²¿ à²ªà²¾à²²à²¿à²¶à³ Rs. 190/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "0e6402f5-fcfd-428f-a4d8-f766f8691bdf",
+              "name": "Black Rice/ ಕಪ್ಪಕ್ಕಿ",
+              "value": "={{ $json[\"RICE [Black Rice/ à²•à²ªà³à²ªà²•à³à²•à²¿ Rs. 225/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "c7f64d09-128c-400e-a60c-a2cd89e079b8",
+              "name": "Thooya Malli Rice‌ / ತೂಯಾ ಮಲ್ಲಿ ಅಕ್ಕಿ",
+              "value": "={{ $json[\"RICE [Thooya Malli Riceâ€Œ / à²¤à³‚à²¯à²¾ à²®à²²à³à²²à²¿ à²…à²•à³à²•à²¿ Rs. 140/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "d6f6086f-c240-435b-8bca-9650f2d47e25",
+              "name": "Foxtail Millet Grits / ನವಣೆ ತರಿ",
+              "value": "={{ $json[\"MILLETS [Foxtail Millet Grits / à²¨à²µà²£à³† à²¤à²°à²¿ Rs. 116/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "f3f64ed6-a633-417f-90c9-d5fa8972c7fe",
+              "name": "Little Millet (Same) Grits / ಸಾಮೆ ತರಿ",
+              "value": "={{ $json[\"MILLETS [Little Millet (Same) Grits / à²¸à²¾à²®à³† à²¤à²°à²¿ Rs. 135/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "b2b94f05-f362-4d50-af56-186e2f01be3d",
+              "name": "Kodo Millet Grits / ಹರ್ಕಾ ತರಿ",
+              "value": "={{ $json[\"MILLETS [Kodo Millet Grits / à²¹à²°à³à²•à²¾ à²¤à²°à²¿ Rs.112/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "65dd5ee9-48e0-4e8f-9782-8bc1650fe1f7",
+              "name": "Barnyard Millet Grits /ಊದಲು ತರಿ",
+              "value": "={{ $json[\"MILLETS [Barnyard Millet Grits /à²Šà²¦à²²à³ à²¤à²°à²¿ Rs. 128/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "8823d190-2166-4256-912b-2d2f9f693a75",
+              "name": "Pearl Millet Grits / ಸಜ್ಜೆ ತರಿ",
+              "value": "={{ $json[\"MILLETS [Proso Millet Grits / à²¬à²°à²—à³ à²¤à²°à²¿ Rs. 113/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "298fab59-60cf-4bb0-84df-2cb718aac296",
+              "name": "Channa Dal/ಕಡ್ಲೆಬೇಳೆ",
+              "value": "={{ $json[\"Dals [Channa Dal/à²•à²¡à³à²²à³†à²¬à³‡à²³à³† Rs. 185/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "2d268e01-767f-4c36-b71a-d0957e2d40d7",
+              "name": "Moong Dal/ಹೆಸರು ಬೇಳೆ",
+              "value": "={{ $json[\"Dals [Moong Dal/à²¹à³†à²¸à²°à³ à²¬à³‡à²³à³† Rs. 245/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "90358204-b97f-4785-8d2f-06d3c0701587",
+              "name": "Toor dal/ ತೊಗರಿ ಬೇಳೆ",
+              "value": "={{ $json[\"Dals [Toor dal/à²¤à³Šà²—à²°à²¿ à²¬à³‡à²³à³† Rs. 255/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "e66d90fc-bd64-4396-81b4-c27b6af94982",
+              "name": "Urad dal/ ಉದ್ದಿನ ಬೇಳೆ",
+              "value": "={{ $json[\"Dals [Urad dal/à²‰à²¦à³à²¦à²¿à²¨ à²¬à³‡à²³à³† Rs. 215/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "e3dbd119-2035-48a8-9dfb-fe7311cc497a",
+              "name": "Urad Whole White (Gola)/ ಉದ್ದಿನ ಕಾಳು ಬಿಳಿ (ಗೋಲ್)",
+              "value": "={{ $json[\"Dals [Urad Whole White (Gola)/à²‰à²¦à³à²¦à²¿à²¨ à²•à²¾à²³à³ à²¬à²¿à²³à²¿ (à²—à³‹à²²à³) Rs. 220/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "7e89a02e-2baa-4588-aba5-a8f2fcdeb7ee",
+              "name": "Urad dal With Skin/ ಉದ್ದಿನ ಬೇಳೆ ಸಿಪ್ಪೆಸಹಿತ",
+              "value": "={{ $json[\"Dals [Urad dal With Skin/à²‰à²¦à³à²¦à²¿à²¨ à²¬à³‡à²³à³† à²¸à²¿à²ªà³à²ªà³†à²¸à²¹à²¿à²¤ Rs. 275/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "f0a8bbd9-86c9-4570-8a3f-dbd2082769bd",
+              "name": "Bengal Gram(Brown)/ಕಡ್ಲೆಕಾಳು",
+              "value": "={{ $json[\"PULSES [Bengal Gram(Brown)/à²•à²¡à³à²²à³†à²•à²¾à²³à³ Rs. 165/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "4a0ddd09-710e-414f-ba8d-c5ad5e15e89f",
+              "name": "Cowpea White/ಅಲಸಂದಿ ಬಿಳಿ",
+              "value": "={{ $json[\"PULSES [Cowpea White/à²…à²²à²¸à²‚à²¦à²¿ à²¬à²¿à²³à²¿ Rs. 170/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "db76bf4b-a77c-44e7-bc6b-bf0771093e7b",
+              "name": "Green Gram Whole/ಹೆಸರು ಕಾಳು",
+              "value": "={{ $json[\"PULSES [Green Gram Whole/à²¹à³†à²¸à²°à³ à²•à²¾à²³à³ Rs.245/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "4e378422-12e2-4bf4-82dc-d49f53e5a5bf",
+              "name": "Green Peas Dry White/ಒಣ ಬಿಳಿ ಬಟಾಣಿ",
+              "value": "={{ $json[\"PULSES [Green Peas Dry White/à²’à²£ à²¬à²¿à²³à²¿ à²¬à²Ÿà²¾à²£à²¿ Rs. 190/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "509673a3-09d3-416d-80bc-217682d90aa7",
+              "name": "Horse Gram/ಹುರುಳಿ",
+              "value": "={{ $json[\"PULSES [Horse Gram/à²¹à³à²°à³à²³à²¿ Rs. 250/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "7a33549a-93a3-4070-947d-3897441388f6",
+              "name": "Kabuli Chana/ಕಾಬೂಲಿ ಕಡಲೆ",
+              "value": "={{ $json[\"PULSES [Kabuli Chana/à²•à²¾à²¬à³‚à²²à²¿ à²•à²¡à²²à³† Rs. 270/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "ccef9dcc-ff72-44d9-9105-a03eaa325483",
+              "name": "Masoor Whole with Skin",
+              "value": "={{ $json[\"PULSES [Masoor Whole with Skin/à²®à²¸à³‚à²°à³ à²¹à³‹à²²à³ Rs. 160/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "db22e6c4-3278-4f0f-ba3b-ffb81512e169",
+              "name": "Moth (Matki)/ಮಡಿಕೆ ಕಾಳು",
+              "value": "={{ $json[\"PULSES [Moth (Matki)/à²®à²¡à²¿à²•à³† à²•à²¾à²³à³ Rs. 185/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "45f0b4df-95f6-463e-90f5-78f11409bfb3",
+              "name": "Rajma Chitra/ ರಾಜ್ಮಾ ಚಿತ್ರಾ",
+              "value": "={{ $json[\"PULSES [Rajma Chitra/à²°à²¾à²œà³à²®à²¾ à²šà²¿à²¤à³à²°à²¾ Rs.260/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "0793190d-d3db-465d-b754-dede23313e0e",
+              "name": "Roasted Gram/ ಹುರಿಗಡಲೆ",
+              "value": "={{ $json[\"PULSES [Roasted Gram/à²¹à³à²°à²¿à²—à²¡à²²à³† Rs. 198/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "d809b080-7a20-46fd-b6ed-6c2eb829ecf1",
+              "name": "Soya bean Whole/ಸೋಯಾ ಬೀನ್",
+              "value": "={{ $json[\"PULSES [Soya bean Whole/à²¸à³‹à²¯à²¾ à²¬à³€à²¨à³ Rs. 150/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "bc1572f8-37dd-4be6-99fe-bb552e9e3582",
+              "name": "Bansi Sooji (yellow)/ಬನ್ಸಿ ರವೇ",
+              "value": "={{ $json[\"CEREALS [Bansi Sooji (yellow)/à²¬à²¨à³à²¸à²¿ à²°à²µà³‡ Rs. 80/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "948badd8-516a-47ae-ad63-eb400415b45d",
+              "name": "Jave Sevai / ಜವೆ ಶ್ಯಾವಿಗೆ/ ಸೇಮಿಗೆ",
+              "value": "={{ $json[\"CEREALS [Jave Sevai / à²œà²µà³† à²¶à³à²¯à²¾à²µà²¿à²—à³†/ à²¸à³‡à²®à²¿à²—à³† Rs.170/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "2b2e98da-9a60-481c-a24b-9f02541fc06e",
+              "name": "Red beaten Rice Thick/ಕೆಂಪು ದಪ್ಪ ಅವಲಕ್ಕಿ",
+              "value": "={{ $json[\"CEREALS [Red beaten Rice Thick/à²•à³†à²‚à²ªà²•à³à²•à²¿ à²…à²µà²²à²•à³à²•à²¿ à²¦à²ªà³à²ª Rs. 100/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "f91508f9-de96-44c0-84e9-56330d8638de",
+              "name": "Jave Rave / ಜವೆ ರವೆ",
+              "value": "={{ $json[\"CEREALS [Jave Rava/à²œà²µà³† à²°à²µà²¾ Rs. 170/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "08af70fc-6ad6-480f-9f3b-9cdd0f0c05c5",
+              "name": "White beaten Rice Thin /ಬಿಳಿ ತೆಳು ಅವಲಕ್ಕಿ",
+              "value": "={{ $json[\"CEREALS [White beaten Rice Thin /à²¬à²¿à²³à²¿ à²…à²µà²²à²•à³à²•à²¿ à²¤à³†à²³à³ Rs. 92/kg. ]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "d78dab3b-b7e5-41b5-b7aa-9bddd01d9fd6",
+              "name": "White beaten Rice Thick/ ಬಿಳಿ ದಪ್ಪ ಅವಲಕ್ಕಿ",
+              "value": "={{ $json[\"CEREALS [White beaten Rice Thick/à²¬à²¿à²³à²¿ à²…à²µà²²à²•à³à²•à²¿ à²¦à²ªà³à²ª Rs. 92/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "efe0c386-15be-406c-af8a-d564a8c81523",
+              "name": "Groundnut/ಶೇಂಗಾ",
+              "value": "={{ $json[\"CEREALS [Groundnut/à²¶à³‡à²‚à²—à²¾ Rs. 245/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "74f2b313-8548-411f-8241-d38d3bf9a034",
+              "name": "Ragi Flour/ರಾಗಿ ಹಿಟ್ಟು",
+              "value": "={{ $json[\"FLOURS [Ragi Flour/à²°à²¾à²—à²¿ à²¹à²¿à²Ÿà³à²Ÿà³ Rs.95/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "84016749-8154-41eb-8e50-a8391c4ec5bd",
+              "name": "Gram Flour/ಬೇಸನ್ ಹಿಟ್ಟು",
+              "value": "={{ $json[\"FLOURS [Gram Flour/à²¬à³‡à²¸à²¨à³ à²¹à²¿à²Ÿà³à²Ÿà³ Rs. 170/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "7f517273-18ea-4956-9c2d-d215dcbfe62c",
+              "name": "Rice Flour/ಅಕ್ಕಿ ಹಿಟ್ಟು",
+              "value": "={{ $json[\"FLOURS [Rice Flour/à²…à²•à³à²•à²¿ à²¹à²¿à²Ÿà³à²Ÿà³ Rs. 80/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "1823d0d2-02a0-47ce-b61b-e0b992a3e60f",
+              "name": "Jowar Flour/ಜೋಳದ ಹಿಟ್ಟು",
+              "value": "={{ $json[\"FLOURS [Jowar Flour/à²œà³‹à²³à²¦ à²¹à²¿à²Ÿà³à²Ÿà³ Rs. 86/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "e2fb2c4d-d153-4613-a916-0e31fdaab735",
+              "name": "JAVE Godhi Atta / ಜವೆ ಗೋಧಿ ಹಿಟ್ಟು",
+              "value": "={{ $json[\"FLOURS [Wheat Kapli Flour/Jave Godhi Atta/à²œà²µà³† à²—à³‹à²§à²¿ à²¹à²¿à²Ÿà³à²Ÿà³ Rs. 170/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "43029576-8dec-43c1-bb5a-2df86b668376",
+              "name": "Wheat Maida/ಗೋಧಿ ಮೈದಾ",
+              "value": "={{ $json[\"FLOURS [Wheat Maida/à²—à³‹à²§à²¿ à²®à³ˆà²¦à²¾ Rs. 82/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "103eb216-87ae-40b7-bf27-c93ee743d927",
+              "name": "Chia seeds White / ಚಿಯಾ ಬೀಜ (ಬಿಳಿ)",
+              "value": "={{ $json[\"OIL SEEDS [Chia seeds White/ à²šà²¿à²¯à²¾ à²¬à³€à²œà²—à²³à³ (à²¬à²¿à²³à²¿) Rs. 503/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "067b6427-a23a-4da2-8433-8ef03445feb1",
+              "name": "Chia seeds black/ ಚಿಯಾ ಬೀಜ (ಕಪ್ಪು)",
+              "value": "={{ $json[\"OIL SEEDS [Chia seeds black/ à²šà²¿à²¯à²¾ à²¬à³€à²œà²—à²³à³ (à²•à²ªà³à²ªà³) Rs. 484/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "d41d5248-acdb-4294-8f58-59eef23d1266",
+              "name": "Flax Seed/ಅಗಸೆ ಬೀಜ",
+              "value": "={{ $json[\"OIL SEEDS [Flax Seed/à²…à²—à²¸à³† à²¬à³€à²œ Rs. 175/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "198e9bcb-5f27-4571-8c6d-779f48bc69cd",
+              "name": "White Sesame/ ಬಿಳಿ ಎಳ್ಳು",
+              "value": "={{ $json[\"OIL SEEDS [Sesame White/à²¬à²¿à²³à²¿ à²Žà²³à³à²³à³ Rs. 370/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "a6ccd734-9d5e-4358-bbe4-b5de33264053",
+              "name": "Ajwain / ಓಂ ಕಾಳು",
+              "value": "={{ $json[\"SPICES & HERBS [Ajwain/à²…à²œà²¿à²µà²¾à²¨ / à²“à²‚ à²•à²¾à²³à³ Rs. 455/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "577d8f9b-568f-421b-9ceb-ef26554e4735",
+              "name": "Black Pepper/ಕಾಳುಮೆಣಸು",
+              "value": "={{ $json[\"SPICES & HERBS [Black Pepper/à²•à²¾à²³à³à²®à³†à²£à²¸à³ Rs. 1230/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "b07ad658-05ec-4fc6-b9d6-9e0565bf62cf",
+              "name": "Cardamom Green/ಏಲಕ್ಕಿ : ಹಸಿರು",
+              "value": "={{ $json[\"SPICES & HERBS [Cardamom Green/à²à²²à²•à³à²•à²¿ : à²¹à²¸à²¿à²°à³ Rs. 4877/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "b67b9cf8-4516-41fa-a127-b3cfb17a539f",
+              "name": "Chilli Byadagi/ಬ್ಯಾಡಗಿ ಮೆಣಸಿನಕಾಯಿ",
+              "value": "={{ $json[\"SPICES & HERBS [Chilli Byadagi/à²¬à³à²¯à²¾à²¡à²—à²¿ à²®à³†à²£à²¸à²¿à²¨à²•à²¾à²¯à²¿ Rs. 849/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "742a7fc0-b6cb-44ef-bb0d-48837f864187",
+              "name": "Chilly Powder/ಮೆಣಸಿನಕಾಯಿ ಪುಡಿ",
+              "value": "={{ $json[\"SPICES & HERBS [Chilly Powder/à²®à³†à²£à²¸à²¿à²¨à²•à²¾à²¯à²¿ à²ªà³à²¡à²¿ Rs. 178/250gms]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "11085733-f97c-4347-824c-31e2c799e97b",
+              "name": "Red Chilly Whole/ಒಣಮೆಣಸಿನಕಾಯಿ ಗುಂಟೂರು",
+              "value": "={{ $json[\"SPICES & HERBS [Red Chilly Whole/à²’à²£à²®à³†à²£à²¸à²¿à²¨à²•à²¾à²¯à²¿ à²—à³à²‚à²Ÿà³‚à²°à³ Rs. 600/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "205b6b3f-db06-45b1-8a9c-ea16ca7480e7",
+              "name": "Cinnamon/ಚಕ್ಕೆ",
+              "value": "={{ $json[\"SPICES & HERBS [Cinnamon/à²šà²•à³à²•à³† Rs. 540/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "44417e93-6181-425a-a88b-9545fdf0d4b7",
+              "name": "Clove / ಲವಂಗ",
+              "value": "={{ $json[\"SPICES & HERBS [Clove/à²²à²µà²‚à²— Rs. 1824/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "c6a2e1c0-a8bd-4be1-98ad-d47c811a4b22",
+              "name": "Coriander Whole/ಧನಿಯಾ (ಹವೀಜ) / ಕೊತ್ತಂಬರಿ",
+              "value": "={{ $json[\"SPICES & HERBS [Coriander Whole/à²§à²¨à²¿à²¯à²¾ (à²¹à²µà³€à²œ) - Rs. 275/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "b4d98128-ab06-48b7-bf84-d171b7f7da35",
+              "name": "Coriander  Powder/ಧನಿಯಾ ಪುಡಿ",
+              "value": "={{ $json[\"SPICES & HERBS [Coriander Powder/à²§à²¨à²¿à²¯à²¾ à²ªà³à²¡à²¿ Rs. 272/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "e16ab81b-241b-4281-8d6c-6af42f8b2a2f",
+              "name": "Cumin/ಜೀರಿಗೆ",
+              "value": "={{ $json[\"SPICES & HERBS [Cumin/à²œà³€à²°à²¿à²—à³† Rs. 1150/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "9440f796-2daa-4059-81d7-0dcfb36ea77f",
+              "name": "Dry Ginger Powder (ಒಣ ಶುಂಠಿ ಪುಡಿ)",
+              "value": "={{ $json[\"SPICES & HERBS [Dry Ginger Powder/à²’à²£à²¶à³à²‚à² à²¿ à²ªà³à²¡à²¿ Rs. 632/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "a154ee72-3075-49df-b7a7-ee3f0e539930",
+              "name": "Fennel seeds (ಬಡಿ ಸೊಂಪು)",
+              "value": "={{ $json[\"SPICES & HERBS [Fennel seeds/à²¸à³‹à²‚à²ªà³ Rs. 595/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "8390c520-eb9c-4eeb-a673-19161a4fc228",
+              "name": "Methi/ಮೆಂತ್ಯ",
+              "value": "={{ $json[\"SPICES & HERBS [Methi/à²®à³†à²‚à²¤à³à²¯ Rs. 185/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "590c2595-eb7d-41f2-acd2-f0485e9081f6",
+              "name": "Mustard Black/ಸಾಸಿವೆ ಕಪ್ಪು",
+              "value": "={{ $json[\"SPICES & HERBS [Mustard Black/à²¸à²¾à²¸à²¿à²µà³† à²•à²ªà³à²ªà³ Rs. 175/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "0003a055-6eee-4560-9c10-3ec5b87106c9",
+              "name": "Tamarind / ಹುಣಸೆಹಣ್ಣು",
+              "value": "={{ $json[\"SPICES & HERBS [Tamarind/ à²¹à³à²£à²¸à³†à²¹à²£à³à²£à³ Rs. 275/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "d086b57a-3d6b-4ce4-a7bb-ea3a9deec4e8",
+              "name": "Turmeric Powder/ಅರಿಷಿಣಪುಡಿ",
+              "value": "={{ $json[\"SPICES & HERBS [Turmeric Powder/à²…à²°à²¿à²·à²¿à²£à²ªà³à²¡à²¿ Rs. 110/250 gms]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "b44e98e4-6573-454a-95b1-12777592bfaa",
+              "name": "Hing / ಇಂಗು",
+              "value": "={{ $json[\"SPICES & HERBS [Hing Rs. 400/20gms]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "d7da6ea8-8440-4226-a3ee-6d0311be7f62",
+              "name": "Honey / ಜೇನು",
+              "value": "={{ $json[\"SWEETNERS [Honey/à²œà³‡à²¨à³à²¤à³à²ªà³à²ª Rs. 660/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "c6ded694-daf5-4c24-a644-709b19ea72b7",
+              "name": "Jaggery Powder/ ಪುಡಿ ಬೆಲ್ಲ",
+              "value": "={{ $json[\"SWEETNERS [Jaggery Powder/à²¬à³†à²²à³à²²à²¦ à²ªà³à²¡à²¿ Rs. 160/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "9a74b18a-dee4-4ffe-a942-00cb6e395ec9",
+              "name": "Jaggery Bucket / ಬಕೆಟ್‌ ಬೆಲ್ಲ",
+              "value": "={{ $json[\"SWEETNERS [Jaggery Bucket Rs.120/piece]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "4684a1f0-61c9-4d9e-989b-7dfe70cb2311",
+              "name": "Brown Sugar/ಬ್ರೌನ್ ಶುಗರ್ ಪುಡಿ",
+              "value": "={{ $json[\"SWEETNERS [Brown Sugar /à²¬à³à²°à³Œà²¨à³ à²¶à³à²—à²°à³ Rs. 115/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "96947393-357b-48fd-9ffc-0d65c116d839",
+              "name": "Organic white sugar/ಸಾವಯವ ಬಿಳಿ ಸಕ್ಕರೆ",
+              "value": "={{ $json[\"SWEETNERS [Organic white sugar/à²¸à²¾à²µà²¯à²µ à²¸à²•à³à²•à²°à³† Rs. 110/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "0decd4fb-fc3e-41af-8a87-050cfd5e8ee6",
+              "name": "Almond/ಬದಾಮಿ",
+              "value": "={{ $json[\"DRY FRUITS [Almond/à²¬à²¦à²¾à²®à²¿ Rs. 1315/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "9ffd680f-728f-4c79-81b3-1150dbddae3e",
+              "name": "Cashew Nut / ಗೋಡಂಬಿ",
+              "value": "={{ $json[\"DRY FRUITS [Cashew Nut/à²—à³‹à²¡à²‚à²¬à²¿ Rs. 1485/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "f602c09e-fad5-42d2-8812-435b2ed221b2",
+              "name": "Dry Grapes/ಒಣ ದ್ರಾಕ್ಷಿ",
+              "value": "={{ $json[\"DRY FRUITS [Dry Grapes/à²’à²£ à²¦à³à²°à²¾à²•à³à²·à²¿ Rs. 499/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "02199bcb-0047-40d9-92d9-c21961bcd6ae",
+              "name": "Himalayan Rock Salt powder/ ಹಿಮಾಲಯನ್ ಕಲ್ಲುಪ್ಪಿನ ಪುಡಿ",
+              "value": "={{ $json[\"SALTS [Himalayan Rock Salt powder/à²¹à²¿à²®à²¾à²²à²¯à²¨à³ à²•à²²à³à²²à³à²ªà³à²ªà³ à²ªà³à²¡à²¿ Rs. 95/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "aee066bc-9c71-4de4-a332-2980e6a06f08",
+              "name": "Sea Salt / ಸಮುದ್ರ ಉಪ್ಪು",
+              "value": "={{ $json[\"SALTS [Sea Salt Crystal/à²¸à²®à³à²¦à³à²° à²‰à²ªà³à²ªà³ à²¹à²°à²³à³ Rs. 45/kg]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "587eac33-d367-49d6-b0c4-c45bc37dfcdb",
+              "name": "Desi Cow Ghee ತುಪ್ಪ",
+              "value": "={{ $json[\"OILS & GHEE [Desi Cow Ghee/à²¸à²¾à²µà²¯à²µ à²¤à³à²ªà³à²ª (à²¹à²¸à³ ) Rs. 1285/ltr]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "07827d7e-d7ba-4f86-a5e7-a31bf52b0eb4",
+              "name": "Groundnut Oil - Wood Pressed/ಶೇಂಗಾ ಎಣ್ಣೆ ",
+              "value": "={{ $json[\"OILS & GHEE [Groundnut Oil/à²¶à³‡à²‚à²—à²¾ à²Žà²£à³à²£à³† Rs. 337/ltr]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "6e6905af-f6e9-4a88-abdf-c4bbb36cd289",
+              "name": "Mustard Oil/ಸಾಸಿವೆ ಎಣ್ಣೆ",
+              "value": "={{ $json[\"OILS & GHEE [Mustard Oil/à²¸à²¾à²¸à²¿à²µà³† à²Žà²£à³à²£à³† Rs. 355/ltr]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "6a4f8a00-5d88-46dc-b1fa-d6bae930ea85",
+              "name": "Safflower Oil/ಕುಸುಬೆ ಎಣ್ಣೆ",
+              "value": "={{ $json[\"OILS & GHEE [Safflower Oil/à²•à³à²¸à³à²¬à³† à²Žà²£à³à²£à³† Rs. 375/ltr]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "25a05c54-12d4-419b-8a71-fe172e0f9270",
+              "name": "Sunflower Oil/ಸೂರ್ಯಕಾಂತಿ ಎಣ್ಣೆ",
+              "value": "={{ $json[\"OILS & GHEE [Sunflower Oil/à²¸à³‚à²°à³à²¯à²•à²¾à²‚à²¤à²¿ à²Žà²£à³à²£à³† Rs. 365/ltr]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "e9fb359f-194b-41e5-9db0-93d90cf45947",
+              "name": "Sesame Oil/ ಎಳ್ಳೆಣ್ಣೆ",
+              "value": "={{ $json[\"OILS & GHEE [Sesame Oil/ à²Žà²³à³à²³à³†à²£à³à²£à³† Rs. 420/ltr]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "e013ffca-17d0-4120-9a09-6f76bac4948b",
+              "name": "Virgin Coconut Oil/ತೆಂಗಿನ ತಾಜಾ ಎಣ್ಣೆ ",
+              "value": "={{ $json[\"OILS & GHEE [Coconut Oil/à²¤à³†à²‚à²—à²¿à²¨ à²Žà²£à³à²£à³† Rs. 695/ltr]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "eb0f4bf2-e4e5-491f-898b-4687f6e0fd56",
+              "name": "Flax Seed chutney/ ಅಗಸೆ ಬೀಜದ ಚಟ್ನಿಪುಡಿ",
+              "value": "={{ $json[\"Homemade Masala / Chutney Powders [Flax Seed chutney/ à²…à²—à²¸à³† à²¬à³€à²œà²¦ à²šà²Ÿà³à²¨à²¿à²ªà³à²¡à²¿ Rs.220/250gms]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "3586c2a6-d074-4604-b7d0-9a8dac1da87a",
+              "name": "Garam Masala / ಗರಂ ಮಸಾಲೆ",
+              "value": "={{ $json[\"Homemade Masala / Chutney Powders [Garam Masala / à²—à²°à²‚ à²®à²¸à²¾à²²à³† Rs. 485/250gms]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "4c73c507-840f-4a03-aeee-d161836b9e8e",
+              "name": "Rasam Powder / ಸಾರು/ ರಸಂ ಪುಡಿ",
+              "value": "={{ $json[\"Homemade Masala / Chutney Powders [Rasam Powder / à²¸à²¾à²°à³/ à²°à²¸à²‚ à²ªà³à²¡à²¿ Rs.288/250gms]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "63abd15c-4cff-4427-b6f8-dac2b956a1c7",
+              "name": "Sambar Powder / ಸಾಂಬಾರ್‌ ಪುಡಿ",
+              "value": "={{ $json[\"Homemade Masala / Chutney Powders [Sambar Powder / à²¸à²¾à²‚à²¬à²¾à²°à³â€Œ à²ªà³à²¡à²¿ Rs.150/250gms]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "f05f9214-1547-475c-baec-46ecb617e904",
+              "name": "Vangibath Powder / ವಾಂಗೀಬಾತ್‌ ಪುಡಿ",
+              "value": "={{ $json[\"Homemade Masala / Chutney Powders [Vangibath Powder / à²µà²¾à²‚à²—à³€à²¬à²¾à²¤à³â€Œ à²ªà³à²¡à²¿ Rs.]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "10e3287d-cedc-4885-9fc9-98e279fd1fe5",
+              "name": "Kashaya Powder",
+              "value": "={{ $json[\"Homemade Masala / Chutney Powders [Kashaya Powder Rs.225/250gms]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "68403e7e-d6b2-4ccf-8538-c8f01448352e",
+              "name": "Shyama Soap / ಶ್ಯಾಮ ಸಾಬೂನು",
+              "value": "={{ $json[\"Organic Handmade Soaps [Shyama (Charcoal) Rs. 120/piece]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "fde424ba-79a7-428c-be1c-d8b91b6371f8",
+              "name": "Pushpam Soap / ಪುಷ್ಪಂ ಸಾಬೂನು",
+              "value": "={{ $json[\"Organic Handmade Soaps [Pushpam (Extra Sensitive Skin) Rs. 110/peice]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "c9a0899a-f232-4e18-838c-8ab2cb19b5c5",
+              "name": "Sugandham Soap / ಸುಗಂಧಂ ಸಾಬೂನು",
+              "value": "={{ $json[\"Organic Handmade Soaps [Sugandham ( Sandal) Rs.150/peice]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "54a47272-47f5-4780-aaea-ce45ba66aeec",
+              "name": "Rosemary Soap / ರೋಸ್ಮೆರಿ ಸಾಬೂನು",
+              "value": "={{ $json[\"Organic Handmade Soaps [Rosemary Soap Rs.110/peice]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "8721b4be-fc79-4b2e-a93e-b7aeb70f30cf",
+              "name": "Peppermint Soap",
+              "value": "={{ $json[\"Organic Handmade Soaps [Peppermint Soap Rs.110/piece]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "505da8ba-281a-416d-b8b1-2c5a73a70070",
+              "name": "Dhoop / ಧೂಪ",
+              "value": "={{ $json[\"Dhoop [Dhoop Rs. 65/packet]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "b85b90c5-235b-4419-9781-7b02ca8621c3",
+              "name": "Sambrani Dhoop Cup",
+              "value": "={{ $json[\"Dhoop [Sambrani Dhoop Cup Rs.220/packet]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "da9a5a3f-b4ea-40d9-8c5f-06b6396b92e4",
+              "name": "Shampoo",
+              "value": "={{ $json[\"Natural and Eco Friendly Products [Venu Madhuri's Natural Shampoo Rs.105/bottle]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "1512adf6-f88d-46a4-b8ef-779bc589894f",
+              "name": "Bamboo Toothbrush for Children / ಮಕ್ಕಳಿಗೆ ಬಿದಿರಿನ ಹಲ್ಲುಜ್ಜುವ ಬ್ರಷ್",
+              "value": "={{ $json[\"Natural and Eco Friendly Products [Bamboo Toothbrush for Children Rs. 60/piece]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "c3d13b00-7329-4d31-83f5-942a52a271a9",
+              "name": "Bamboo Tooth Brush / ಬಿದಿರಿನ ಹಲ್ಲುಜ್ಜುವ ಬ್ರಷ್",
+              "value": "={{ $json[\"Natural and Eco Friendly Products [Bamboo Tooth Brush for Adults Rs. 65/piece]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "a5478848-a953-40ee-b023-07e36762c4b2",
+              "name": "Bamboo Ear Buds / ಬಿದಿರಿನ ಇಯರ್ ಬಡ್ಸ್",
+              "value": "={{ $json[\"Natural and Eco Friendly Products [Bamboo Ear Buds Rs.50/pack]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "013b57c9-0cc7-41fe-a934-25b5e9b09fc0",
+              "name": "Plantable Seed Pencil / ಪ್ಲಾಂಟಬಲ್‌ ಸೀಡ್‌ ಪೆನ್ಸಿಲ್",
+              "value": "={{ $json[\"Natural and Eco Friendly Products [Plantable Seed Pencil pack of 10 Rs. 134/box]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "23c188ae-363f-4d77-8484-4b6b5e43d63d",
+              "name": "Plantable Seed Pen‌ / ಪ್ಲಾಂಟಬಲ್‌ ಸೀಡ್‌ ಪೆನ್‌",
+              "value": "={{ $json[\"Natural and Eco Friendly Products [Plantable Seed Pen pack of 5 Rs. 91/box]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "1f718b22-1fd3-4886-b8f7-69c7096cd993",
+              "name": "Bio Diswash Liquid / ಬಯೋ ಡಿಶ ವಾಶ್‌ ಲಿಕ್ವಿಡ್",
+              "value": "={{ $json[\"Natural and Eco Friendly Products [BIO Diswash Liquid Rs. 269/500ml]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "53e48f92-83bd-4b0c-b942-f851eb223cd1",
+              "name": "Bio Toilet Cleaner‌ / ಬಯೋ ಟಾಯ್ಲೆಟ್‌ ಕ್ಲೀನರ್",
+              "value": "={{ $json[\"Natural and Eco Friendly Products [BIO Toilet Cleaner Rs.269/500ml]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "3af42801-d0c9-4dc1-b20a-96d14f4832de",
+              "name": "Bio Floor Cleaner‌ / ಬಯೋ ಫ್ಲೋರ್‌ ಕ್ಲೀನರ್",
+              "value": "={{ $json[\"Natural and Eco Friendly Products [BIO Floor Cleaner Rs. 269/500ml]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "521eebf7-f974-4e1e-a105-b32d0b9a4c08",
+              "name": "Bio Laundry Wash‌ / ಬಯೋ ಲಾಂಡ್ರಿ ವಾಶ್",
+              "value": "={{ $json[\"Natural and Eco Friendly Products [Bio Laundry Wash Rs. 269/500ml]\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "80ab087e-fa2e-42fd-96c7-27f7d6c318db",
+              "name": "Bio Kitchen Cleaner‌ / ಬಯೋ ಕಿಚನ್‌ ಕ್ಲೀನರ್",
+              "value": "={{ $json[\"Natural and Eco Friendly Products [Bio Kitchen Cleaner Rs. 269/500ml]\"] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -160,
+        400
+      ],
+      "id": "01bd4c2d-a1e9-4b80-bc37-62599b55f4c6",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "Aih3hZbAL6HQbvO9",
+          "mode": "list",
+          "cachedResultName": "orders_monthly",
+          "cachedResultUrl": "/projects/1BB4IzRDTtcD7I0W/datatables/Aih3hZbAL6HQbvO9"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "RedRice": "={{ $json[\"Red Rice / ಕೆಂಪಕ್ಕಿ\"] }}",
+            "PonniRiceRaw": "={{ $json[\"Ponni Rice Raw /ಪೋನ್ನಿ ಅಕ್ಕಿ\"] }}",
+            "SonaMasuriRice": "={{ $json[\"Sona Masuri Rice - Polish/ಸೋನಾ ಮಸೂರಿ ಅಕ್ಕಿ ಪಾಲಿಷ್ಡ್\"] }}",
+            "IdliRice": "={{ $json[\"Idli Rice/ ಇಡ್ಲಿ ಅಕ್ಕಿ\"] }}",
+            "WhiteBasumathiRice": "={{ $json[\"White Basumathi Rice/ ಬಾಸ್ಮತಿ ಅಕ್ಕಿ ಪಾಲಿಶ್\"] }}",
+            "BlackRice": "={{ $json[\"Black Rice/ ಕಪ್ಪಕ್ಕಿ\"] }}",
+            "ThooyaMalliRice": "={{ $json[\"Thooya Malli Rice‌ / ತೂಯಾ ಮಲ್ಲಿ ಅಕ್ಕಿ\"] }}",
+            "FoxtailMilletGrits": "={{ $json[\"Foxtail Millet Grits / ನವಣೆ ತರಿ\"] }}",
+            "LittleMilletGrits": "={{ $json[\"Little Millet (Same) Grits / ಸಾಮೆ ತರಿ\"] }}",
+            "KodoMilletGrits": "={{ $json[\"Kodo Millet Grits / ಹರ್ಕಾ ತರಿ\"] }}",
+            "BarnyardMilletGrits": "={{ $json[\"Barnyard Millet Grits /ಊದಲು ತರಿ\"] }}",
+            "PearlMilletGrits": "={{ $json[\"Pearl Millet Grits / ಸಜ್ಜೆ ತರಿ\"] }}",
+            "ChannaDal": "={{ $json[\"Channa Dal/ಕಡ್ಲೆಬೇಳೆ\"] }}",
+            "MoongDal": "={{ $json[\"Moong Dal/ಹೆಸರು ಬೇಳೆ\"] }}",
+            "TootDal": "={{ $json[\"Toor dal/ ತೊಗರಿ ಬೇಳೆ\"] }}",
+            "UradWholeWhite": "={{ $json[\"Urad Whole White (Gola)/ ಉದ್ದಿನ ಕಾಳು ಬಿಳಿ (ಗೋಲ್)\"] }}",
+            "Uraddal": "={{ $json[\"Urad dal/ ಉದ್ದಿನ ಬೇಳೆ\"] }}",
+            "UradDalWithSkin": "={{ $json[\"Urad dal With Skin/ ಉದ್ದಿನ ಬೇಳೆ ಸಿಪ್ಪೆಸಹಿತ\"] }}",
+            "BengalGram": "={{ $json[\"Bengal Gram(Brown)/ಕಡ್ಲೆಕಾಳು\"] }}",
+            "CowpeaWhite": "={{ $json[\"Cowpea White/ಅಲಸಂದಿ ಬಿಳಿ\"] }}",
+            "GreenGramWhole": "={{ $json[\"Green Gram Whole/ಹೆಸರು ಕಾಳು\"] }}",
+            "GreenPeasDry": "={{ $json[\"Green Peas Dry White/ಒಣ ಬಿಳಿ ಬಟಾಣಿ\"] }}",
+            "HorseGram": "={{ $json[\"Horse Gram/ಹುರುಳಿ\"] }}",
+            "KabuliChana": "={{ $json[\"Kabuli Chana/ಕಾಬೂಲಿ ಕಡಲೆ\"] }}",
+            "MasoorWholeWithSkin": "={{ $json[\"Masoor Whole with Skin\"] }}",
+            "MothMatki": "={{ $json[\"Moth (Matki)/ಮಡಿಕೆ ಕಾಳು\"] }}",
+            "RajmaChitra": "={{ $json[\"Rajma Chitra/ ರಾಜ್ಮಾ ಚಿತ್ರಾ\"] }}",
+            "RoastedGram": "={{ $json[\"Roasted Gram/ ಹುರಿಗಡಲೆ\"] }}",
+            "SoyaBeanWhole": "={{ $json[\"Soya bean Whole/ಸೋಯಾ ಬೀನ್\"] }}",
+            "BansiSooji": "={{ $json[\"Bansi Sooji (yellow)/ಬನ್ಸಿ ರವೇ\"] }}",
+            "JaveSevai": "={{ $json[\"Jave Sevai / ಜವೆ ಶ್ಯಾವಿಗೆ/ ಸೇಮಿಗೆ\"] }}",
+            "RedBeatenRice": "={{ $json[\"Red beaten Rice Thick/ಕೆಂಪು ದಪ್ಪ ಅವಲಕ್ಕಿ\"] }}",
+            "JaveRave": "={{ $json[\"Jave Rave / ಜವೆ ರವೆ\"] }}",
+            "WhiteBeatenRiceThin": "={{ $json[\"White beaten Rice Thin /ಬಿಳಿ ತೆಳು ಅವಲಕ್ಕಿ\"] }}",
+            "WhiteBeatenRiceThick": "={{ $json[\"White beaten Rice Thick/ ಬಿಳಿ ದಪ್ಪ ಅವಲಕ್ಕಿ\"] }}",
+            "Groundnut": "={{ $json[\"Groundnut/ಶೇಂಗಾ\"] }}",
+            "RagiFlour": "={{ $json[\"Ragi Flour/ರಾಗಿ ಹಿಟ್ಟು\"] }}",
+            "GramFlour": "={{ $json[\"Gram Flour/ಬೇಸನ್ ಹಿಟ್ಟು\"] }}",
+            "RiceFlour": "={{ $json[\"Rice Flour/ಅಕ್ಕಿ ಹಿಟ್ಟು\"] }}",
+            "JowarFlour": "={{ $json[\"Jowar Flour/ಜೋಳದ ಹಿಟ್ಟು\"] }}",
+            "JaveGodhiAtta": "={{ $json[\"JAVE Godhi Atta / ಜವೆ ಗೋಧಿ ಹಿಟ್ಟು\"] }}",
+            "WheatMaida": "={{ $json[\"Wheat Maida/ಗೋಧಿ ಮೈದಾ\"] }}",
+            "ChiaSeedsWhite": "={{ $json[\"Chia seeds White / ಚಿಯಾ ಬೀಜ (ಬಿಳಿ)\"] }}",
+            "ChiaSeedsBlack": "={{ $json[\"Chia seeds black/ ಚಿಯಾ ಬೀಜ (ಕಪ್ಪು)\"] }}",
+            "FlaxSeeds": "={{ $json[\"Flax Seed/ಅಗಸೆ ಬೀಜ\"] }}",
+            "WhiteSesame": "={{ $json[\"White Sesame/ ಬಿಳಿ ಎಳ್ಳು\"] }}",
+            "Ajwain": "={{ $json[\"Ajwain / ಓಂ ಕಾಳು\"] }}",
+            "BlackPepper": "={{ $json[\"Black Pepper/ಕಾಳುಮೆಣಸು\"] }}",
+            "Cardamom": "={{ $json[\"Cardamom Green/ಏಲಕ್ಕಿ : ಹಸಿರು\"] }}",
+            "ChilliByadagi": "={{ $json[\"Chilli Byadagi/ಬ್ಯಾಡಗಿ ಮೆಣಸಿನಕಾಯಿ\"] }}",
+            "ChillyPowder": "={{ $json[\"Chilly Powder/ಮೆಣಸಿನಕಾಯಿ ಪುಡಿ\"] }}",
+            "RedChillyWhole": "={{ $json[\"Red Chilly Whole/ಒಣಮೆಣಸಿನಕಾಯಿ ಗುಂಟೂರು\"] }}",
+            "Cinnamon": "={{ $json[\"Cinnamon/ಚಕ್ಕೆ\"] }}",
+            "Clove": "={{ $json[\"Clove / ಲವಂಗ\"] }}",
+            "CorrianderWhole": "={{ $json[\"Coriander Whole/ಧನಿಯಾ (ಹವೀಜ) / ಕೊತ್ತಂಬರಿ\"] }}",
+            "CorrianderPowder": "={{ $json[\"Coriander  Powder/ಧನಿಯಾ ಪುಡಿ\"] }}",
+            "Cumin": "={{ $json[\"Cumin/ಜೀರಿಗೆ\"] }}",
+            "DryGingerPowder": "={{ $json[\"Dry Ginger Powder (ಒಣ ಶುಂಠಿ ಪುಡಿ)\"] }}",
+            "FennelSeeds": "={{ $json[\"Fennel seeds (ಬಡಿ ಸೊಂಪು)\"] }}",
+            "Methi": "={{ $json[\"Methi/ಮೆಂತ್ಯ\"] }}",
+            "MustardBlack": "={{ $json[\"Mustard Black/ಸಾಸಿವೆ ಕಪ್ಪು\"] }}",
+            "Tamarind": "={{ $json[\"Tamarind / ಹುಣಸೆಹಣ್ಣು\"] }}",
+            "TurmericPowder": "={{ $json[\"Turmeric Powder/ಅರಿಷಿಣಪುಡಿ\"] }}",
+            "Hing": "={{ $json[\"Hing / ಇಂಗು\"] }}",
+            "Honey": "={{ $json[\"Honey / ಜೇನು\"] }}",
+            "JaggeryPowder": "={{ $json[\"Jaggery Powder/ ಪುಡಿ ಬೆಲ್ಲ\"] }}",
+            "JaggeryBucket": "={{ $json[\"Jaggery Bucket / ಬಕೆಟ್‌ ಬೆಲ್ಲ\"] }}",
+            "BrownSugar": "={{ $json[\"Brown Sugar/ಬ್ರೌನ್ ಶುಗರ್ ಪುಡಿ\"] }}",
+            "OrganicWhiteSugar": "={{ $json[\"Organic white sugar/ಸಾವಯವ ಬಿಳಿ ಸಕ್ಕರೆ\"] }}",
+            "Almond": "={{ $json[\"Almond/ಬದಾಮಿ\"] }}",
+            "CashewNut": "={{ $json[\"Cashew Nut / ಗೋಡಂಬಿ\"] }}",
+            "DryGrapes": "={{ $json[\"Dry Grapes/ಒಣ ದ್ರಾಕ್ಷಿ\"] }}",
+            "HimalyanRockSalt": "={{ $json[\"Himalayan Rock Salt powder/ ಹಿಮಾಲಯನ್ ಕಲ್ಲುಪ್ಪಿನ ಪುಡಿ\"] }}",
+            "SeaSalt": "={{ $json[\"Sea Salt / ಸಮುದ್ರ ಉಪ್ಪು\"] }}",
+            "DesiCowGhee": "={{ $json[\"Desi Cow Ghee ತುಪ್ಪ\"] }}",
+            "GroundnutOil": "={{ $json[\"Groundnut Oil - Wood Pressed/ಶೇಂಗಾ ಎಣ್ಣೆ \"] }}",
+            "MustardOil": "={{ $json[\"Mustard Oil/ಸಾಸಿವೆ ಎಣ್ಣೆ\"] }}",
+            "SafflowerOil": "={{ $json[\"Safflower Oil/ಕುಸುಬೆ ಎಣ್ಣೆ\"] }}",
+            "SunflowerOil": "={{ $json[\"Sunflower Oil/ಸೂರ್ಯಕಾಂತಿ ಎಣ್ಣೆ\"] }}",
+            "SesameOil": "={{ $json[\"Sesame Oil/ ಎಳ್ಳೆಣ್ಣೆ\"] }}",
+            "VirginCoconutOil": "={{ $json[\"Virgin Coconut Oil/ತೆಂಗಿನ ತಾಜಾ ಎಣ್ಣೆ \"] }}",
+            "FlaxSeedsChutneyPowder": "={{ $json[\"Flax Seed chutney/ ಅಗಸೆ ಬೀಜದ ಚಟ್ನಿಪುಡಿ\"] }}",
+            "GaramMasala": "={{ $json[\"Garam Masala / ಗರಂ ಮಸಾಲೆ\"] }}",
+            "RasamPowder": "={{ $json[\"Rasam Powder / ಸಾರು/ ರಸಂ ಪುಡಿ\"] }}",
+            "SambarPowder": "={{ $json[\"Sambar Powder / ಸಾಂಬಾರ್‌ ಪುಡಿ\"] }}",
+            "VangibathPowder": "={{ $json[\"Vangibath Powder / ವಾಂಗೀಬಾತ್‌ ಪುಡಿ\"] }}",
+            "KashayaPowder": "={{ $json[\"Kashaya Powder\"] }}",
+            "ShyamaSoap": "={{ $json[\"Shyama Soap / ಶ್ಯಾಮ ಸಾಬೂನು\"] }}",
+            "PushpamSoap": "={{ $json[\"Pushpam Soap / ಪುಷ್ಪಂ ಸಾಬೂನು\"] }}",
+            "SugandhamSoap": "={{ $json[\"Sugandham Soap / ಸುಗಂಧಂ ಸಾಬೂನು\"] }}",
+            "RosemarySoap": "={{ $json[\"Rosemary Soap / ರೋಸ್ಮೆರಿ ಸಾಬೂನು\"] }}",
+            "PeppermintSoap": "={{ $json[\"Peppermint Soap\"] }}",
+            "Dhoop": "={{ $json[\"Dhoop / ಧೂಪ\"] }}",
+            "SambraniDhoopCup": "={{ $json[\"Sambrani Dhoop Cup\"] }}",
+            "Shampoo": "={{ $json.Shampoo }}",
+            "BambooTootbrushChildren": "={{ $json[\"Bamboo Toothbrush for Children / ಮಕ್ಕಳಿಗೆ ಬಿದಿರಿನ ಹಲ್ಲುಜ್ಜುವ ಬ್ರಷ್\"] }}",
+            "BambooTootbrush": "={{ $json[\"Bamboo Tooth Brush / ಬಿದಿರಿನ ಹಲ್ಲುಜ್ಜುವ ಬ್ರಷ್\"] }}",
+            "PlantableSeedsPencil": "={{ $json[\"Plantable Seed Pencil / ಪ್ಲಾಂಟಬಲ್‌ ಸೀಡ್‌ ಪೆನ್ಸಿಲ್\"] }}",
+            "PlantableSeedsPen": "={{ $json[\"Plantable Seed Pen‌ / ಪ್ಲಾಂಟಬಲ್‌ ಸೀಡ್‌ ಪೆನ್‌\"] }}",
+            "BioDishwashLiquid": "={{ $json[\"Bio Diswash Liquid / ಬಯೋ ಡಿಶ ವಾಶ್‌ ಲಿಕ್ವಿಡ್\"] }}",
+            "BioToiletCleaner": "={{ $json[\"Bio Toilet Cleaner‌ / ಬಯೋ ಟಾಯ್ಲೆಟ್‌ ಕ್ಲೀನರ್\"] }}",
+            "BioFloorCleaner": "={{ $json[\"Bio Floor Cleaner‌ / ಬಯೋ ಫ್ಲೋರ್‌ ಕ್ಲೀನರ್\"] }}",
+            "BioLaundryWash": "={{ $json[\"Bio Laundry Wash‌ / ಬಯೋ ಲಾಂಡ್ರಿ ವಾಶ್\"] }}",
+            "BioKitchenCleaner": "={{ $json[\"Bio Kitchen Cleaner‌ / ಬಯೋ ಕಿಚನ್‌ ಕ್ಲೀನರ್\"] }}",
+            "Name": "={{ $json.Name }}",
+            "WhatsappNo": "={{ $json.WhatsappNo }}",
+            "Email": "={{ $json.Email }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Name",
+              "displayName": "Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "WhatsappNo",
+              "displayName": "WhatsappNo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RedRice",
+              "displayName": "RedRice",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "PonniRiceRaw",
+              "displayName": "PonniRiceRaw",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "SonaMasuriRice",
+              "displayName": "SonaMasuriRice",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "IdliRice",
+              "displayName": "IdliRice",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "WhiteBasumathiRice",
+              "displayName": "WhiteBasumathiRice",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BlackRice",
+              "displayName": "BlackRice",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ThooyaMalliRice",
+              "displayName": "ThooyaMalliRice",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "FoxtailMilletGrits",
+              "displayName": "FoxtailMilletGrits",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "LittleMilletGrits",
+              "displayName": "LittleMilletGrits",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "KodoMilletGrits",
+              "displayName": "KodoMilletGrits",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BarnyardMilletGrits",
+              "displayName": "BarnyardMilletGrits",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "PearlMilletGrits",
+              "displayName": "PearlMilletGrits",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ChannaDal",
+              "displayName": "ChannaDal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "MoongDal",
+              "displayName": "MoongDal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "TootDal",
+              "displayName": "TootDal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Uraddal",
+              "displayName": "Uraddal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "UradWholeWhite",
+              "displayName": "UradWholeWhite",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "UradDalWithSkin",
+              "displayName": "UradDalWithSkin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BengalGram",
+              "displayName": "BengalGram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "CowpeaWhite",
+              "displayName": "CowpeaWhite",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "GreenGramWhole",
+              "displayName": "GreenGramWhole",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "GreenPeasDry",
+              "displayName": "GreenPeasDry",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "HorseGram",
+              "displayName": "HorseGram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "KabuliChana",
+              "displayName": "KabuliChana",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "MasoorWholeWithSkin",
+              "displayName": "MasoorWholeWithSkin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "MothMatki",
+              "displayName": "MothMatki",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RajmaChitra",
+              "displayName": "RajmaChitra",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RoastedGram",
+              "displayName": "RoastedGram",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "SoyaBeanWhole",
+              "displayName": "SoyaBeanWhole",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BansiSooji",
+              "displayName": "BansiSooji",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "JaveSevai",
+              "displayName": "JaveSevai",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RedBeatenRice",
+              "displayName": "RedBeatenRice",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "JaveRave",
+              "displayName": "JaveRave",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "WhiteBeatenRiceThin",
+              "displayName": "WhiteBeatenRiceThin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "WhiteBeatenRiceThick",
+              "displayName": "WhiteBeatenRiceThick",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Groundnut",
+              "displayName": "Groundnut",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RagiFlour",
+              "displayName": "RagiFlour",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "GramFlour",
+              "displayName": "GramFlour",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RiceFlour",
+              "displayName": "RiceFlour",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "JowarFlour",
+              "displayName": "JowarFlour",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "JaveGodhiAtta",
+              "displayName": "JaveGodhiAtta",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "WheatMaida",
+              "displayName": "WheatMaida",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ChiaSeedsWhite",
+              "displayName": "ChiaSeedsWhite",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ChiaSeedsBlack",
+              "displayName": "ChiaSeedsBlack",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "FlaxSeeds",
+              "displayName": "FlaxSeeds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "WhiteSesame",
+              "displayName": "WhiteSesame",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Ajwain",
+              "displayName": "Ajwain",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BlackPepper",
+              "displayName": "BlackPepper",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Cardamom",
+              "displayName": "Cardamom",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ChilliByadagi",
+              "displayName": "ChilliByadagi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ChillyPowder",
+              "displayName": "ChillyPowder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RedChillyWhole",
+              "displayName": "RedChillyWhole",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Cinnamon",
+              "displayName": "Cinnamon",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Clove",
+              "displayName": "Clove",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "CorrianderWhole",
+              "displayName": "CorrianderWhole",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "CorrianderPowder",
+              "displayName": "CorrianderPowder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Cumin",
+              "displayName": "Cumin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "DryGingerPowder",
+              "displayName": "DryGingerPowder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "FennelSeeds",
+              "displayName": "FennelSeeds",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Methi",
+              "displayName": "Methi",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "MustardBlack",
+              "displayName": "MustardBlack",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Tamarind",
+              "displayName": "Tamarind",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "TurmericPowder",
+              "displayName": "TurmericPowder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Hing",
+              "displayName": "Hing",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Honey",
+              "displayName": "Honey",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "JaggeryPowder",
+              "displayName": "JaggeryPowder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "JaggeryBucket",
+              "displayName": "JaggeryBucket",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BrownSugar",
+              "displayName": "BrownSugar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "OrganicWhiteSugar",
+              "displayName": "OrganicWhiteSugar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Almond",
+              "displayName": "Almond",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "CashewNut",
+              "displayName": "CashewNut",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "DryGrapes",
+              "displayName": "DryGrapes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "HimalyanRockSalt",
+              "displayName": "HimalyanRockSalt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "SeaSalt",
+              "displayName": "SeaSalt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "DesiCowGhee",
+              "displayName": "DesiCowGhee",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "GroundnutOil",
+              "displayName": "GroundnutOil",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "MustardOil",
+              "displayName": "MustardOil",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "SafflowerOil",
+              "displayName": "SafflowerOil",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "SunflowerOil",
+              "displayName": "SunflowerOil",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "SesameOil",
+              "displayName": "SesameOil",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "VirginCoconutOil",
+              "displayName": "VirginCoconutOil",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "FlaxSeedsChutneyPowder",
+              "displayName": "FlaxSeedsChutneyPowder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "GaramMasala",
+              "displayName": "GaramMasala",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RasamPowder",
+              "displayName": "RasamPowder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "SambarPowder",
+              "displayName": "SambarPowder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "VangibathPowder",
+              "displayName": "VangibathPowder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "KashayaPowder",
+              "displayName": "KashayaPowder",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "ShyamaSoap",
+              "displayName": "ShyamaSoap",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "PushpamSoap",
+              "displayName": "PushpamSoap",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "SugandhamSoap",
+              "displayName": "SugandhamSoap",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "RosemarySoap",
+              "displayName": "RosemarySoap",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "PeppermintSoap",
+              "displayName": "PeppermintSoap",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Dhoop",
+              "displayName": "Dhoop",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "SambraniDhoopCup",
+              "displayName": "SambraniDhoopCup",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Shampoo",
+              "displayName": "Shampoo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BambooTootbrushChildren",
+              "displayName": "BambooTootbrushChildren",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BambooTootbrush",
+              "displayName": "BambooTootbrush",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "PlantableSeedsPencil",
+              "displayName": "PlantableSeedsPencil",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "PlantableSeedsPen",
+              "displayName": "PlantableSeedsPen",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BioDishwashLiquid",
+              "displayName": "BioDishwashLiquid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BioToiletCleaner",
+              "displayName": "BioToiletCleaner",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BioFloorCleaner",
+              "displayName": "BioFloorCleaner",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BioLaundryWash",
+              "displayName": "BioLaundryWash",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "BioKitchenCleaner",
+              "displayName": "BioKitchenCleaner",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "optimizeBulk": false
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        48,
+        400
+      ],
+      "id": "04681ae6-340b-4005-a013-237adcfc5bec",
+      "name": "Insert row1"
+    },
+    {
+      "parameters": {
+        "content": "## Getting Every user order from Form excel\n",
+        "height": 272,
+        "width": 1024,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -672,
+        320
+      ],
+      "typeVersion": 1,
+      "id": "0ec1184e-da32-4402-acd8-3dcb5d91101b",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Fetch singe user entry and create a list of items and price\n",
+        "height": 272,
+        "width": 1024,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -688,
+        624
+      ],
+      "typeVersion": 1,
+      "id": "4fcc6983-90de-42f0-b5c2-e3781b748fbd",
+      "name": "Sticky Note2"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Insert row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Insert row1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "versionId": "e9e813ef-4536-4f16-9387-05e3b6eead74",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d51b91d76cb6f6cdfe2985fd9eb0bdaf8c460423bae60a29fe36709ec4fcf6ef"
+  },
+  "id": "yz3lyAae30edb7pO",
+  "tags": []
+}
