@@ -1,4 +1,4 @@
-{
+`{
   "name": "My workflow",
   "nodes": [
     {
@@ -2230,4 +2230,4 @@
   },
   "id": "yz3lyAae30edb7pO",
   "tags": []
-}
+}`
